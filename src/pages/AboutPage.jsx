@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Container, Typography, Box } from '@mui/material';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import { supabase } from '../client';
+import { ColorContext } from '../ColorContext';
 
 function AboutPage() {
+  const { primaryColor, secondaryColor, textColor, text2Color } = useContext(ColorContext);
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(true);
 
@@ -31,13 +33,13 @@ function AboutPage() {
   }
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: secondaryColor }}>
       <Nav />
       <Container sx={{ flex: 1 }}>
-        <Typography variant="h2" component="h1" gutterBottom>
+        <Typography variant="h2" component="h1" gutterBottom color={primaryColor}>
           Acerca de nosotros
         </Typography>
-        <Typography variant="body1">
+        <Typography variant="body1" color={textColor}>
           {content}
         </Typography>
       </Container>

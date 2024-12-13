@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Box, Typography, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import { supabase } from '../client';
+import { ColorContext } from '../ColorContext';
 
 const FaqsPage = () => {
+  const { primaryColor, secondaryColor, textColor, text2Color } = useContext(ColorContext);
   const [faqs, setFaqs] = useState([]);
   const [expanded, setExpanded] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -36,19 +38,19 @@ const FaqsPage = () => {
   }
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: secondaryColor }}>
       <Nav />
       <Box sx={{ flex: 1, width: '100%', p: 3 }}>
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h4" gutterBottom color={primaryColor}>
           Preguntas frecuentes
         </Typography>
         {faqs.map((faq, index) => (
           <Accordion key={faq.id} expanded={expanded === `panel${index}`} onChange={handleChange(`panel${index}`)} sx={{ mb: 2, borderRadius: 2, boxShadow: 1 }}>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-              <Typography>{faq.question}</Typography>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ backgroundColor: primaryColor }}>
+              <Typography color={textColor}>{faq.question}</Typography>
             </AccordionSummary>
-            <AccordionDetails>
-              <Typography>{faq.answer}</Typography>
+            <AccordionDetails sx={{ backgroundColor: secondaryColor }}>
+              <Typography color={text2Color}>{faq.answer}</Typography>
             </AccordionDetails>
           </Accordion>
         ))}
