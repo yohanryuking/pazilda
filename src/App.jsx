@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useContext, useEffect } from 'react';
 import { MyContext } from './MyProvider';
+import { ColorContext, ColorProvider } from './ColorContext';
 
 // Tus componentes de página
 import HomePage from './pages/HomePage';
@@ -9,6 +10,7 @@ import AboutPage from './pages/AboutPage';
 import ServicesPage from './pages/ServicesPage';
 import FaqsPage from './pages/FaqsPage';
 import ContactPage from './pages/ContactPage';
+import AdminPanel from './pages/AdminPanel';
 
 
 
@@ -81,15 +83,19 @@ function App() {
   return (
 
     <ThemeProvider theme={theme}>
-      <Router>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/faqs" element={<FaqsPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-        </Routes>
-      </Router>
+      <ColorProvider>
+
+        <Router>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/faqs" element={<FaqsPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/admin" element={<AdminPanel />} />
+          </Routes>
+        </Router>
+      </ColorProvider>
     </ThemeProvider>
   );
 }

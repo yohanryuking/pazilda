@@ -1,6 +1,6 @@
 import React from 'react';
 import Nav from '../components/Nav';
-import { Box, Typography, Grid, useTheme, useMediaQuery, Button, Container, Card, CardContent } from '@mui/material';
+import { Box, Typography, Grid, useTheme, useMediaQuery, Button, Container, Card, CardContent, CardMedia } from '@mui/material';
 import Slider from "react-slick";
 import CardInfo from '../components/CardInfo';
 import svg1 from '../assets/svg1.svg';
@@ -13,6 +13,8 @@ import { MyContext } from '../MyProvider';
 import ColorPicker from '../components/ColorPicker';
 import { useContext } from 'react';
 import { useState } from 'react';
+import { useEffect } from 'react';
+
 
 
 
@@ -23,6 +25,26 @@ function HomePage() {
 	const navigate = useNavigate();
 	const { primary, secondary, text, setPrimary, setSecondary, setText } = useContext(MyContext);
 	const [currentColor, setCurrentColor] = useState('primary');
+	const [services, setServices] = useState([]);
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
+		fetchServices();
+	}, []);
+
+	const fetchServices = async () => {
+		const { data, error } = await supabase
+			.from('services')
+			.select('*');
+
+		if (error) {
+			console.error('Error fetching services:', error);
+		} else {
+			console.log('Fetched services:', data); // Verificar los datos obtenidos
+			setServices(data);
+			setLoading(false);
+		}
+	};
 
 	const handleColorChange = async (color) => {
 		switch (currentColor) {
@@ -58,6 +80,14 @@ function HomePage() {
 		}
 	};
 
+	const getRandomServices = (services) => {
+		const shuffled = services.sort(() => 0.5 - Math.random());
+		return shuffled.slice(0, 3);
+	};
+
+
+	const randomServices = getRandomServices(services);
+
 	const settings = {
 		// dots: true,
 		infinite: true,
@@ -87,6 +117,9 @@ function HomePage() {
 		// Más objetos aquí...
 	];
 
+	if (loading) {
+		return <Typography>Cargando...</Typography>;
+	}
 
 	return (
 		<Box>
@@ -160,31 +193,23 @@ function HomePage() {
 
 			<Box py={5} width={'98%'} px={'10px'}>
 				<Slider {...settings}>
-					<div>
-						<Card elevation={5} sx={{ margin: '0 10px', height: '200px' }}>
-							<CardContent>
-								<Typography variant="h5">Servicio 1</Typography>
-								<Typography variantz="body2">Descripción del servicio 1</Typography>
-							</CardContent>
-						</Card>
-					</div>
-					<div>
-						<Card elevation={5} sx={{ margin: '0 10px', height: '200px' }}>
-							<CardContent>
-								<Typography variant="h5">Servicio 2</Typography>
-								<Typography variant="body2">Descripción del servicio 2</Typography>
-							</CardContent>
-						</Card>
-					</div>
-					<div>
-						<Card elevation={5} sx={{ margin: '0 10px', height: '200px' }}>
-							<CardContent>
-								<Typography variant="h5">Servicio 3</Typography>
-								<Typography variant="body2">Descripción del servicio 3</Typography>
-							</CardContent>
-						</Card>
-					</div>
-
+					{randomServices.map(service => (
+						<Box key={service.id} sx={{ p: 2 }}>
+							<Card sx={{ borderRadius: 2, boxShadow: 1 }}>
+								<CardMedia
+									component="img"
+									height="200"
+									image={service.image || 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><rect width="200" height="200" fill="url(#gradient)" /><defs><linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:rgb(240,240,240);stop-opacity:1" /><stop offset="100%" style="stop-color:rgb(200,200,200);stop-opacity:1" /></linearGradient></defs></svg>'}
+									alt={service.title}
+									sx={{ objectFit: 'contain', backgroundColor: service.image ? 'transparent' : '#f0f0f0' }}
+								/>
+								<CardContent>
+									<Typography variant="h5">{service.title}</Typography>
+									<Typography variant="body2">{service.description}</Typography>
+								</CardContent>
+							</Card>
+						</Box>
+					))}
 				</Slider>
 			</Box>
 
