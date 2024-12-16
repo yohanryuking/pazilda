@@ -42,7 +42,7 @@ function AboutPage() {
         <Typography variant="body1" color={textColor}>
           {content}
         </Typography>
-      </Container>
+      </Container> 
       <Footer />
     </Box>
   );
