@@ -2,6 +2,7 @@ import { Box, Typography, TextField, Button, IconButton } from '@mui/material';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import TelegramIcon from '@mui/icons-material/Telegram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 import Nav from '../components/Nav';
@@ -42,10 +43,7 @@ function ContactPage() {
 						<FacebookIcon />
 					</IconButton>
 					<IconButton color="secondary">
-						<InstagramIcon />
-					</IconButton>
-					<IconButton color="secondary">
-						<LinkedInIcon />
+						<TelegramIcon />
 					</IconButton>
 				</Box>
 

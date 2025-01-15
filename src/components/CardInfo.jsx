@@ -8,7 +8,7 @@ const CardInfo = ({ data }) => {
 	return (
 		<Grid container mb={2} sx={{ alignItems: 'center' }}>
 			<Grid item xs={2} sx={{ display: 'flex', justifyContent: 'center' }}>
-				<Box sx={{ bgcolor: 'secondary.main', color: 'primary.main', borderRadius: '50%', width: 50, height: 50, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+				<Box sx={{ bgcolor: 'secondary.main', color: '#fff', borderRadius: '50%', width: 50, height: 50, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 					<Typography sx={{ fontSize: 40, fontWeight: 'bold' }}>{data.numero}</Typography>
 				</Box>
 			</Grid>

@@ -1,8 +1,13 @@
+@font-face {
+  font-family: 'Allura-Regular';
+  src: url('./assets/Allura-Regular.otf') format('opentype');
+}
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  
 }
 
 .logo {

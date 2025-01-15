@@ -33,7 +33,7 @@ function AboutPage() {
   }
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: secondaryColor }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: secondaryColor, textAlign:"center",}}>
       <Nav />
       <Container sx={{ flex: 1 }}>
         <Typography variant="h2" component="h1" gutterBottom color={primaryColor}>
@@ -45,6 +45,7 @@ function AboutPage() {
       </Container> 
       <Footer />
     </Box>
+    
   );
 }
 

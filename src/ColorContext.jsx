@@ -4,10 +4,10 @@ import { supabase } from './client';
 export const ColorContext = createContext();
 
 export const ColorProvider = ({ children }) => {
-  const [primaryColor, setPrimaryColor] = useState('#000000');
+  const [primaryColor, setPrimaryColor] = useState('#dd6e11');
   const [secondaryColor, setSecondaryColor] = useState('#ffffff');
   const [textColor, setTextColor] = useState('#000000');
-  const [text2Color, setText2Color] = useState('#000000');
+  const [text2Color, setText2Color] = useState('#dd6e11');
 
   useEffect(() => {
     fetchColors();

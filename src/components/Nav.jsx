@@ -16,7 +16,7 @@ function Nav() {
 	};
 
 	const list = (isDrawer = true) => (
-		<Box display={isDrawer ? "block" : "flex"} color={theme.palette.secondary.main} fontWeight={'bold'}>
+		<Box display={isDrawer ? "block" : "flex"} color={"#fff"} sx={{background:"pr"}} fontWeight={'bold'}>
 			{[
 				{ name: 'Inicio', path: '/' },
 				{ name: 'Servicios', path: '/services' },

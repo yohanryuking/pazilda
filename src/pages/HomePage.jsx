@@ -113,7 +113,7 @@ function HomePage() {
 	const datos = [
 		{ svg: svg1, titulo: 'Evaluación sociosanitaria', subtitulo: 'Valoramos las necesidades tanto de la persona mayor como de la familia y definimos el perfil de la cuidadora.', numero: 1 },
 		{ svg: svg2, titulo: 'Selección personalizada', subtitulo: 'Enviamos a los cuidadores afines a la evaluación solicitada.', numero: 2 },
-		{ svg: svg3, titulo: 'Incorporación del cuidador', subtitulo: 'El cuidador conoce a la familia y comienza a trabajar en el domicilio de la persona dependiente.', numero: 3 },
+		{ svg: svg3, titulo: 'Incorporación del cuidador', subtitulo: 'El cuidador conoce a la familia y comienza a trabajar en el domicilio del adulto mayor o de la persona en situación de dependencia.', numero: 3 },
 		// Más objetos aquí...
 	];
 
@@ -168,17 +168,17 @@ function HomePage() {
 						</Typography>
 					</Grid>
 					<Grid item xs={9} mb={18}>
-						<Typography variant={isXsOrSm ? "body1" : "h5"} align="center" sx={{ mb: 2, textAlign: 'center', fontWeight: 'bold', lineHeight: '1.2' }}>
+						<Typography variant={isXsOrSm ? "body1" : "h5"} align="center" sx={{ mb: 2, textAlign: 'center', fontWeight: 'bold', lineHeight: '1.2',fontFamily: 'Allura-Regular' }}>
 							Garantizamos tranquilidad y estabilidad tanto para el adulto mayor como para su familia. Logramos construir relaciones duraderas entre el mayor y la cuidadora.
 						</Typography>
 					</Grid>
 					<Grid item xs={12} container justifyContent="center">
-						<Button variant="contained" color="secondary" sx={{ borderRadius: '50px', color: 'primary.main' }} onClick={() => navigate('/services')}>
+						<Button variant="contained" color="secondary" sx={{ borderRadius: '50px', color: '#fff' }} onClick={() => navigate('/services')}>
 							Contratar Cuidador
 						</Button>
 					</Grid>
 					<Grid item xs={12} mb={6} container justifyContent="center">
-						<Button variant="contained" color="secondary" sx={{ borderRadius: '50px', color: 'primary.main' }} onClick={() => navigate('/contact')}>
+						<Button variant="contained" color="secondary" sx={{ borderRadius: '50px', color: '#fff' }} onClick={() => navigate('/contact')}>
 							Contáctenos
 						</Button>
 					</Grid>
@@ -232,7 +232,7 @@ function HomePage() {
 
 					<Typography variant={isXsOrSm ? "h5" : "h4"} align="center" sx={{ mb: 2, textAlign: 'center', fontWeight: 'bold', lineHeight: '1.2', }}>Pide información sin compromiso</Typography>
 
-					<Button variant="contained" color="primary" sx={{ borderRadius: '50px', color: 'secondary.main', margin: '0 30px' }} onClick={() => navigate('/services')}>
+					<Button variant="contained" color="primary" sx={{ borderRadius: '50px', color: '#fff', margin: '0 30px' }} onClick={() => navigate('/services')}>
 						<Typography variant={isXsOrSm ? "h6" : "h5"} sx={{ fontWeight: 'bold' }}>
 							Te asesoramos gratis.
 						</Typography>
@@ -252,7 +252,7 @@ function HomePage() {
 				</div>
 			</Box>
 
-			<Box sx={{ bgcolor: 'secondary.main', color: 'primary.main', p: 4, textAlign: 'center', mb: '35px' }}>
+			<Box sx={{ bgcolor: 'secondary.main', color: '#fff', p: 4, textAlign: 'center' }}>
 				<Typography variant="h5" gutterBottom fontWeight="bold">
 					¿Tienes preguntas o quieres saber más de nuestros servicios?
 				</Typography>
@@ -263,23 +263,12 @@ function HomePage() {
 					Estamos aquí para ayudarte.
 				</Typography>
 
-				<Button variant="contained" sx={{ borderRadius: '50px', color: 'secondary.main', margin: '0 30px' }} onClick={() => navigate('/contact')}>
+				<Button variant="contained" sx={{ borderRadius: '50px', color: '#fff', margin: '0 30px' }} onClick={() => navigate('/contact')}>
 					<Typography variant={isXsOrSm ? "h6" : "h5"} sx={{ fontWeight: 'bold' }}>
 						Escríbenos
 					</Typography>
 				</Button>
 			</Box>
-
-			<div>
-				<select value={currentColor} onChange={(e) => setCurrentColor(e.target.value)}>
-					<option value="primary">Primario</option>
-					<option value="secondary">Secundario</option>
-					<option value="text">Texto</option>
-					<option value="text2">Texto2</option>
-				</select>
-				<ColorPicker color={currentColor === 'primary' ? primary : currentColor === 'secondary' ? secondary : text} onColorChange={handleColorChange} />
-				{/* El resto de tu código... */}
-			</div>
 
 			<Footer></Footer>
 		</Box>
